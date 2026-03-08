@@ -136,13 +136,21 @@ curl -X POST http://localhost:8000/api/v1/auth/login \
   -H "Content-Type: application/json" \
   -d '{"username":"alice","password":"SecurePass1"}'
 ```
+### Direct communication
+```bash
+curl -X POST http://43.205.146.139:8000/api/v1/conversations/direct -H "Authorization: Bearer ****" -H "Content-Type: application/json" -d '{"user_id": "f5fbd80d-3f7c-40a5-8054-de5d3c7ac0cd"}'
+```
+## Get conversations
+```bash
+curl http://43.205.146.139:8000/api/v1/conversations   -H "Authorization: Bearer ***"
+```
 
 ### Send a message
 ```bash
-curl -X POST http://localhost:8000/api/v1/messages \
-  -H "Authorization: Bearer <token>" \
+curl -X POST http://43.205.146.139:8000/api/v1/messages \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiMTQ1MGVjNC0zNDNkLTRiZDAtYjEyOC1iOTczNDZlMzRhNTMiLCJleHAiOjE3NzMwNDQwNzYsInR5cGUiOiJhY2Nlc3MifQ.v9d0pT3q4tQIfELZI4FZqnRplj6kmLnWWR2Z-UbKQB0" \
   -H "Content-Type: application/json" \
-  -d '{"conversation_id":"<uuid>","type":"text","content":"Hey there!"}'
+  -d '{"conversation_id":"0fec3805-52dc-4671-9b6b-c73c20553a31","type":"text","content":"Hey there!"}'
 ```
 
 ### Get messages with pagination
@@ -272,3 +280,7 @@ pytest tests/ -v --asyncio-mode=auto
 - [x] SQL injection prevention (SQLAlchemy ORM)
 - [ ] HTTPS / TLS termination (handled by nginx/load balancer)
 - [ ] FCM server key in env (not hardcoded)
+
+
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmNWZiZDgwZC0zZjdjLTQwYTUtODA1NC1kZTVkM2M3YWMwY2QiLCJleHAiOjE3NzMwNDMyNjgsInR5cGUiOiJhY2Nlc3MifQ.7-7ITFb3d6jPBIyFjUSTmU4EBNRqdAZxV9jWUpXCrok

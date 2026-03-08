@@ -129,6 +129,8 @@ async def handle_event(user_id: str, event: dict, websocket: WebSocket):
     if event_type == WSEventType.PING:
         await websocket.send_json({"type": WSEventType.PONG, "ts": _now()})
 
+    
+
     elif event_type == WSEventType.TYPING_START:
         conv_id = data.get("conversation_id")
         if conv_id and await _is_member(user_id, conv_id):

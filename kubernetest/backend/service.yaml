@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: chat-service-api-svc
+  namespace: backend
+  labels:
+    app: gchat
+spec:
+  type: ClusterIP
+  selector:
+    app: gchat
+  ports:
+    - port: 80          # Port exposed inside the cluster
+      targetPort: 8000  # Port on the pod/container
+      protocol: TCP

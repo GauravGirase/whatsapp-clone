@@ -1,3 +1,5 @@
+import hashlib
+import base64
 from datetime import datetime, timedelta, timezone
 from typing import Optional
 from jose import JWTError, jwt
@@ -11,7 +13,7 @@ from db.database import get_db
 from models.models import User, RefreshToken
 import uuid
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login")
 
 
@@ -21,8 +23,13 @@ def hash_password(password: str) -> str:
     return pwd_context.hash(password)
 
 
+# def verify_password(plain: str, hashed: str) -> bool:
+#     return pwd_context.verify(plain, hashed)
+
 def verify_password(plain: str, hashed: str) -> bool:
-    return pwd_context.verify(plain, hashed)
+    sha256_bytes = hashlib.sha256(plain.encode("utf-8")).digest()
+    safe_str = base64.b64encode(sha256_bytes).decode("utf-8")
+    return pwd_context.verify(safe_str, hashed)
 
 
 # ─── JWT ─────────────────────────────────────────────────────────────────────

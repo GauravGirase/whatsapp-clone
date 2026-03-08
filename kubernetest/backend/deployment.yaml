@@ -7,21 +7,51 @@ spec:
   replicas: 4
   selector:
     matchLabels:
-      name: chat-service-api
       app: gchat
-      env: dev
   template:
     metadata:
       labels:
-        name: chat-service-api
         app: gchat
+        service: chat-service-api
         env: dev
     spec:
+      terminationGracePeriodSeconds: 30
       containers:
-        - name: chart-service-container
+        - name: chat-service-container
           image: gauravgirase/whatsappclone:v1.0.0
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
+
           envFrom:
             - configMapRef:
-                name: 
+                name: backend-configmap
+            - secretRef:
+                name: backend-secret
+
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "250Mi"
+            limits:
+              cpu: "1000m"
+              memory: "500Mi"
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+
+          lifecycle:
+            preStop:
+              exec:
+                command: ["sleep", "10"]

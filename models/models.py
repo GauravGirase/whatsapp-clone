@@ -63,7 +63,7 @@ class User(Base):
     avatar_url      = Column(String(500), nullable=True)
     bio             = Column(String(300), nullable=True)
     is_active       = Column(Boolean, default=True)
-    is_verified     = Column(Boolean, default=False)
+    is_verified     = Column(Boolean, default=True)
     last_seen       = Column(DateTime(timezone=True), nullable=True)
     created_at      = Column(DateTime(timezone=True), server_default=func.now())
     updated_at      = Column(DateTime(timezone=True), onupdate=func.now())

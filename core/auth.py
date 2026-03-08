@@ -1,5 +1,3 @@
-import hashlib
-import base64
 from datetime import datetime, timedelta, timezone
 from typing import Optional
 from jose import JWTError, jwt
@@ -23,13 +21,8 @@ def hash_password(password: str) -> str:
     return pwd_context.hash(password)
 
 
-# def verify_password(plain: str, hashed: str) -> bool:
-#     return pwd_context.verify(plain, hashed)
-
 def verify_password(plain: str, hashed: str) -> bool:
-    sha256_bytes = hashlib.sha256(plain.encode("utf-8")).digest()
-    safe_str = base64.b64encode(sha256_bytes).decode("utf-8")
-    return pwd_context.verify(safe_str, hashed)
+    return pwd_context.verify(plain, hashed)
 
 
 # ─── JWT ─────────────────────────────────────────────────────────────────────

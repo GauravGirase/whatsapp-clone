@@ -140,7 +140,7 @@ async def get_messages(
     messages = list(reversed(messages[:limit]))
 
     next_cursor = messages[0].id if has_more and messages else None
-    messages_out = [MessageOut.model_validate(m) for m in messages]
+    messages_out = [MessageOut.model_validate(m, strict=False) for m in messages]
 
     return MessagePage(
         messages=messages_out,

@@ -154,8 +154,8 @@ class Message(Base):
     conversation    = relationship("Conversation", back_populates="messages")
     sender          = relationship("User", back_populates="sent_messages", foreign_keys=[sender_id])
     reply_to        = relationship("Message", remote_side="Message.id", foreign_keys=[reply_to_id])
-    receipts        = relationship("MessageReceipt", back_populates="message")
-    reactions       = relationship("MessageReaction", back_populates="message")
+    receipts        = relationship("MessageReceipt", back_populates="message",  lazy="selectin")
+    reactions       = relationship("MessageReaction", back_populates="message", lazy="selectin")
 
     __table_args__ = (
         Index("ix_messages_conv_created", "conversation_id", "created_at"),

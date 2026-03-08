@@ -7,7 +7,7 @@ class Settings(BaseSettings):
     # App
     APP_NAME: str = "MessagingAPI"
     APP_VERSION: str = "1.0.0"
-    DEBUG: bool = False
+    DEBUG: bool = True
     SECRET_KEY: str = "change-me-in-production-use-32-chars-min"
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 1440

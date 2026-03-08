@@ -139,7 +139,7 @@ class MessageOut(BaseModel):
     media_thumbnail: Optional[str]
     media_size: Optional[int]
     media_duration: Optional[int]
-    meta_data: Optional[Any]
+    meta: Optional[Any]
     reply_to_id: Optional[str]
     is_forwarded: bool
     is_edited: bool

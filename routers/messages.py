@@ -140,7 +140,14 @@ async def get_messages(
     messages = list(reversed(messages[:limit]))
 
     next_cursor = messages[0].id if has_more and messages else None
-    return MessagePage(messages=messages, has_more=has_more, next_cursor=next_cursor)
+    messages_out = [MessageOut.model_validate(m) for m in messages]
+
+    return MessagePage(
+        messages=messages_out,
+        has_more=has_more,
+        next_cursor=next_cursor
+    )
+    # return MessagePage(messages=messages, has_more=has_more, next_cursor=next_cursor)
 
 
 # ─── Edit ─────────────────────────────────────────────────────────────────────

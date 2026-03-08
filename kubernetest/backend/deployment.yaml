@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chat-service-api
+  namespace: backend
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      name: chat-service-api
+      app: gchat
+      env: dev
+  template:
+    metadata:
+      labels:
+        name: chat-service-api
+        app: gchat
+        env: dev
+    spec:
+      containers:
+        - name: chart-service-container
+          image: gauravgirase/whatsappclone:v1.0.0
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: 

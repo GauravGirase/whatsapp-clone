@@ -140,7 +140,8 @@ class Message(Base):
     media_thumbnail = Column(String(500), nullable=True)
     media_size      = Column(Integer, nullable=True)       # Bytes
     media_duration  = Column(Integer, nullable=True)       # Seconds for audio/video
-    metadata        = Column(JSON, nullable=True)          # Flexible extra data
+    # metadata        = Column(JSON, nullable=True)          # Flexible extra data
+    meta_data = Column("metadata", JSON, nullable=True)
     reply_to_id     = Column(UUID(as_uuid=False), ForeignKey("messages.id"), nullable=True)
     is_forwarded    = Column(Boolean, default=False)
     is_edited       = Column(Boolean, default=False)

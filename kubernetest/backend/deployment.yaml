@@ -4,7 +4,7 @@ metadata:
   name: chat-service-api
   namespace: backend
 spec:
-  replicas: 4
+  replicas: 1
   selector:
     matchLabels:
       app: gchat

@@ -18,7 +18,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: chat-service-container
-          image: gauravgirase/whatsappclone:v1.0.4
+          image: gauravgirase/whatsappclone:v1.0.5
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000

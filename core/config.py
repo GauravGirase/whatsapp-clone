@@ -42,6 +42,8 @@ class Settings(BaseSettings):
     # Rate limiting
     RATE_LIMIT_PER_MINUTE: int = 60
 
+    ALLOW_ORIGINS = ["*"]
+
     class Config:
         env_file = ".env"
         case_sensitive = True

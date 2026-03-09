@@ -20,4 +20,3 @@ data:
 
   # Rate limiting
   RATE_LIMIT_PER_MINUTE: "60"
-  ALLOW_ORIGINS: '["*"]'

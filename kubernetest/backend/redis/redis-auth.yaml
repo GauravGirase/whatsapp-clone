@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: redis-auth
+type: Opaque
+data:
+  password: c3VwZXJzZWNyZXRwYXNz # base64 encoded

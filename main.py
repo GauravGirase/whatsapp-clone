@@ -78,7 +78,7 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://13.127.81.174:3000"] if settings.DEBUG else ["https://yourdomain.com"],
+    allow_origins=ALLOW_ORIGINS if settings.DEBUG else ["https://yourdomain.com"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

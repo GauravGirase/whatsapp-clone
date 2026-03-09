@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: ui-container
-          image: gauravgirase/whatclone-ui:v1.0.0
+          image: gauravgirase/whatclone-ui:v1.0.1
           ports:
             - containerPort: 5678
 ---
